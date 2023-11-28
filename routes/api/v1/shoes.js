@@ -1,32 +1,16 @@
 const express = require('express');
 const router = express.Router();
+//shoescontroler importeren
+const shoesController = require('../../../controllers/api/v1/shoes');
 
 //POST /shoes
-router.post("/", (req, res) => {
-    res.json({ 
-        "status": "succes",
-        "data":{
-            "shoe": "Nike Air Max 90"
-        } 
-    });
-});
+router.post("/", shoesController.create);
 
 //TODO: DELETE /shoes/:id
 //TODO: PUT /shoes/:id
 
 //GET /shoes
-router.get("/", (req, res) => {
-    res.json({ 
-        "status": "succes",
-        "data":{
-            "shoes": [
-                "Nike Air Max 90",
-                "Adidas Superstar",
-                "Puma Clyde"
-            ]
-        } 
-    });
-});
+router.get("/", shoesController.getAll);
 
 //TODO: GET /shoes/:id
 
