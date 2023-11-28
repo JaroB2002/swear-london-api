@@ -8,6 +8,9 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiShoesRouter = require('./routes/api/v1/shoes');
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/sneakersapp');
+
 const app = express();
 
 // view engine setup
