@@ -1,12 +1,5 @@
-// Require mongoose
-const mongoose = require('mongoose');
-//Create a schema
-const Schema = mongoose.Schema;
-const shoesSchema = new Schema({
-    text: String,
-    user: String
-})
-const Shoes = mongoose.model('Shoes', shoesSchema);
+//model importeren
+const Shoes = require('../../../models/Shoes');
 
 //functie om alle schoenen op te halen
 const getAll = (req, res) => {
@@ -24,10 +17,10 @@ const getAll = (req, res) => {
         });
 }
 //functie om schoen op te slaan
-const create = (req, res) => {
+const create = (req, res, next) => {
     let shoe = new Shoes();
-    shoe.text = "My first shoe";
-    shoe.user = "Jan";
+    shoe.text = req.body.text;
+    shoe.user = req.body.user;
     //opslaan in database
     shoe.save()
         .then(doc => {
@@ -41,6 +34,10 @@ const create = (req, res) => {
         })
         .catch(err => {
             console.log(err);
+            res.json({ 
+                "status": "error",
+                "message": "Could not save this shoe"
+            });
         });
 }
 
