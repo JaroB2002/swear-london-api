@@ -7,3 +7,27 @@ passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+// webtoken strategy
+const JwtStrategy = require('passport-jwt').Strategy,
+    ExtractJwt = require('passport-jwt').ExtractJwt;
+const opts = {}
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+opts.secretOrKey = 'SecretWord';
+
+passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
+    User.findOne({_id:jwt_payload.uid}).exec()
+    .then(user => {
+      if (user) {
+        return done(null, user);
+      } else {
+        return done(null, false);
+      }
+    })
+    .catch(err => {
+      return done(err, false);
+    });
+}));
+
+//export passport
+module.exports = passport;
