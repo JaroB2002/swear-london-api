@@ -1,7 +1,4 @@
 {
-    "Database": {
-        "conn": "mongodb+srv://r0883883:KjfOo1F4qYsm47nO@cluster0.afj9u53.mongodb.net/?retryWrites=true&w=majority"
-    },
     "jwt": {
         "secret": "SecretWord"
     }
