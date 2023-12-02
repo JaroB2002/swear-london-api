@@ -10,9 +10,13 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiShoesRouter = require('./routes/api/v1/shoes');
 const passport = require('./passport/passport');
+//require config
+const config = require('config');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/sneakersapp');
+mongoose.connect(process.env.dbconn || config.get('Database.conn'));
+
+console.log(process.env.node_env);
 
 const app = express();
 
