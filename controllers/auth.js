@@ -2,6 +2,8 @@
 const User = require('../models/User');
 //webtokens
 const jwt = require('jsonwebtoken');
+//config importeren
+const config = require('config');
 //functies
 //signup functie
 const signup = async (req, res, next) => {
@@ -20,7 +22,7 @@ const signup = async (req, res, next) => {
           uid: user._id,
           username: user.username
         },
-        "SecretWord"
+        config.get('jwt.secret')
       );
   
       return res.json({
@@ -53,7 +55,7 @@ const login = async(req, res, next) =>{
                 uid: result.user._id,
                 username: result.user.username
             },
-            "SecretWord"
+            config.get('jwt.secret')
         );
 
         return res.json({
