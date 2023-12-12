@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+
 //shoescontroler importeren
 const shoesController = require('../../../controllers/api/v1/shoes');
 
@@ -10,7 +12,7 @@ router.post("/", shoesController.create);
 //TODO: PUT /shoes/:id
 
 //GET /shoes
-router.get("/", shoesController.getAll);
+router.get("/", passport.authenticate('jwt', { session: false }), shoesController.getAll);
 
 //TODO: GET /shoes/:id
 
