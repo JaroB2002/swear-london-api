@@ -24,6 +24,7 @@ const create = (req, res, next) => {
     shoe.client = req.body.client;
     shoe.status = req.body.status;
     shoe.compound = req.body.compound;
+    shoe.price = req.body.price;
     //opslaan in database
     shoe.save()
         .then(doc => {

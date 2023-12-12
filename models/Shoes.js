@@ -26,6 +26,14 @@ const shoesSchema = new Schema({
         outside_2: { type: String },
         sole_bottom: { type: String },
         sole_top: { type: String }
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 })
 const Shoes = mongoose.model('Shoes', shoesSchema);
