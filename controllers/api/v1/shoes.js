@@ -3,12 +3,12 @@ const Shoes = require('../../../models/Shoes');
 
 //functie om alle schoenen op te halen
 const getAll = (req, res) => {
-    Shoes.find({ "user": req.user._id})
+    Shoes.find()
         .then(docs => {
             res.json({ 
                 "status": "succes",
                 "data": {
-                    "shoes": docs.map(doc => doc.text)
+                    "shoes": docs
                 } 
             });
         })
