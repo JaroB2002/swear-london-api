@@ -15,6 +15,7 @@ router.post("/", shoesController.create);
 router.get("/", passport.authenticate('jwt', { session: false }), shoesController.getAll);
 
 //TODO: GET /shoes/:id
+router.get("/:id", passport.authenticate('jwt', { session: false }), shoesController.getById);
 
 //Router exporteren
 module.exports = router;

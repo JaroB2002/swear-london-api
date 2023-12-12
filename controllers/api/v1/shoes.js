@@ -16,6 +16,23 @@ const getAll = (req, res) => {
             console.log(err);
         });
 }
+//functie getById
+const getById = (req, res) => {
+    let id = req.params.id;
+    Shoes.findById(id)
+        .then(doc => {
+            res.json({ 
+                "status": "Getting order with id " + id,
+                "data": {
+                    "shoe": doc
+                } 
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
 //functie om schoen op te slaan
 const create = (req, res, next) => {
     let shoe = new Shoes();
@@ -47,4 +64,5 @@ const create = (req, res, next) => {
 
 //functies exporteren
 module.exports.getAll = getAll;
+module.exports.getById = getById;
 module.exports.create = create;
