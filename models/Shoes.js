@@ -20,12 +20,12 @@ const shoesSchema = new Schema({
         required: true
     },
     compound: {
-        outside_01: { type: String, required: true },
-        laces: { type: String, required: true },
-        inside: { type: String, required: true },
-        outside_2: { type: String, required: true },
-        sole_bottom: { type: String, required: true },
-        sole_top: { type: String, required: true }
+        outside_01: { type: String },
+        laces: { type: String},
+        inside: { type: String },
+        outside_2: { type: String },
+        sole_bottom: { type: String },
+        sole_top: { type: String }
     }
 })
 const Shoes = mongoose.model('Shoes', shoesSchema);
