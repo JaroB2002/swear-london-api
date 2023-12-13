@@ -42,6 +42,7 @@ const create = (req, res, next) => {
     shoe.status = req.body.status;
     shoe.compound = req.body.compound;
     shoe.price = req.body.price;
+    shoe.user = req.body.user;
     //opslaan in database
     shoe.save()
         .then(doc => {

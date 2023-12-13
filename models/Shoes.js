@@ -34,6 +34,9 @@ const shoesSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    user :{
+        type: Object
     }
 })
 const Shoes = mongoose.model('Shoes', shoesSchema);
