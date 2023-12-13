@@ -32,6 +32,22 @@ const getById = (req, res) => {
             console.log(err);
         });
 }
+//functie om een order te annuleren
+const deleteById = (req, res) => {
+    let id = req.params.id;
+    Shoes.findByIdAndRemove(id)
+        .then(doc => {
+            res.json({ 
+                "status": "Deleting order with id " + id,
+                "data": {
+                    "shoe": doc
+                } 
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
 
 //functie om schoen op te slaan
 const create = (req, res, next) => {
@@ -66,4 +82,5 @@ const create = (req, res, next) => {
 //functies exporteren
 module.exports.getAll = getAll;
 module.exports.getById = getById;
+module.exports.deleteById = deleteById;
 module.exports.create = create;

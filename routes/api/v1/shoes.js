@@ -9,6 +9,7 @@ const shoesController = require('../../../controllers/api/v1/shoes');
 router.post("/", shoesController.create);
 
 //TODO: DELETE /shoes/:id
+router.delete("/:id", passport.authenticate('jwt', { session: false }), shoesController.deleteById);
 //TODO: PUT /shoes/:id
 
 //GET /shoes
