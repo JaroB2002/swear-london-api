@@ -20,12 +20,12 @@ const shoesSchema = new Schema({
         required: true
     },
     compound: {
-        outside_01: { type: String },
-        laces: { type: String},
-        inside: { type: String },
-        outside_2: { type: String },
-        sole_bottom: { type: String },
-        sole_top: { type: String }
+        outside_01: {type: Object},
+        laces: {type: Object},
+        inside: {type: Object},
+        outside_2: {type: Object},
+        sole_bottom: {type: Object },
+        sole_top: {type: Object}
     },
     price: {
         type: Number,
