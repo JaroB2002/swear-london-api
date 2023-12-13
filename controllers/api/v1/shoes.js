@@ -35,7 +35,7 @@ const getById = (req, res) => {
 //functie om een order te annuleren
 const deleteById = (req, res) => {
     let id = req.params.id;
-    Shoes.findByIdAndRemove(id)
+    Shoes.findByIdAndDelete(id)
         .then(doc => {
             res.json({ 
                 "status": "Deleting order with id " + id,
