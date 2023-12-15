@@ -15,20 +15,13 @@ const go = (server) => {
         let parsedData = JSON.parse(data);
         console.log(`received data from client`, parsedData.data);
 
-        if (parsedData.action === "updateList") {
+        if (parsedData.action === "update") {
           //update the orders list
           primus.write({
-            action: "updateList",
-            data: {
-              shoes: parsedData.data.shoes,
-            },
-          });
-        } else if (parsedData.action === "updateCount") {
-          //update the orders counter
-          primus.write({
-            action: "updateCount",
+            action: "update",
             data: {
               count: parsedData.data.ordersCount,
+              shoes: parsedData.data.shoes
             },
           });
         }
