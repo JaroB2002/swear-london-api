@@ -52,15 +52,8 @@ const deleteById = (req, res) => {
 //functie om een order te updaten
 const updateById = (req, res) => {
     let id = req.params.id;
-    Shoes.findById(id)
+    Shoes.findByIdAndUPdate(id, req.body, {new: true})
         .then(doc => {
-            doc.name = req.body.name;
-            doc.size = req.body.size;
-            doc.client = req.body.client;
-            doc.status = req.body.status;
-            doc.compound = req.body.compound;
-            doc.price = req.body.price;
-            doc.user = req.body.user;
             doc.save()
                 .then(doc => {
                     res.json({ 
