@@ -10,7 +10,9 @@ router.post("/", shoesController.create);
 
 //TODO: DELETE /shoes/:id
 router.delete("/:id", passport.authenticate('jwt', { session: false }), shoesController.deleteById);
+
 //TODO: PUT /shoes/:id
+router.put("/:id", passport.authenticate('jwt', { session: false }), shoesController.updateById);
 
 //GET /shoes
 router.get("/", passport.authenticate('jwt', { session: false }), shoesController.getAll);
