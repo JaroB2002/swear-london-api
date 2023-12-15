@@ -52,7 +52,7 @@ const deleteById = (req, res) => {
 //functie om een order te updaten
 const updateById = (req, res) => {
     let id = req.params.id;
-    Shoes.findByIdAndUPdate(id, req.body, {new: true})
+    Shoes.findByIdAndUpdate(id, req.body, {new: true})
         .then(doc => {
             doc.save()
                 .then(doc => {
