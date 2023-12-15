@@ -25,6 +25,15 @@ const go = (server) => {
             },
           });
         }
+        if(parsedData.action === "post"){
+          //update the orders list with the new order
+          primus.write({
+            action: "post",
+            data: {
+              shoe: parsedData.data.shoe
+            }
+          });
+        }
       } catch (err) {
         console.log("de error is:", err);
       }
