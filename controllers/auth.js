@@ -72,6 +72,33 @@ const login = async(req, res, next) =>{
     }
 };
 
+//change password functie
+const changePassword = async(req, res, next) =>{
+    try{
+        const result = await User.authenticate()(req.body.username, req.body.oldPassword);
+        if (!result.user) {
+            return res.json({
+                status: "failed",
+                message: "Change password failed, user not found."
+            });
+        }
+
+        await result.user.setPassword(req.body.newPassword);
+        await result.user.save();
+
+        return res.json({
+                status: "success",
+                message: "Password changed successfully"
+        });
+    }catch(err) {
+        res.json({
+            "status": "error",
+            "message": "error"
+        });
+    }
+};
+
 // exporteren van de functies
 module.exports.signup = signup;
 module.exports.login = login;
+module.exports.changePassword = changePassword;
