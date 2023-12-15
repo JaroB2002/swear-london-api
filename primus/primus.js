@@ -34,6 +34,15 @@ const go = (server) => {
             }
           });
         }
+        if(parsedData.action === "delete"){
+          //update the orders list with the new order
+          primus.write({
+            action: "delete",
+            data: {
+              count: parsedData.data.ordersCount -1,
+            }
+          });
+        }
       } catch (err) {
         console.log("de error is:", err);
       }
