@@ -49,6 +49,40 @@ const deleteById = (req, res) => {
         });
 }
 
+//functie om een order te updaten
+const updateById = (req, res) => {
+    let id = req.params.id;
+    Shoes.findById(id)
+        .then(doc => {
+            doc.name = req.body.name;
+            doc.size = req.body.size;
+            doc.client = req.body.client;
+            doc.status = req.body.status;
+            doc.compound = req.body.compound;
+            doc.price = req.body.price;
+            doc.user = req.body.user;
+            doc.save()
+                .then(doc => {
+                    res.json({ 
+                        "status": "Updating order with id " + id,
+                        "data": {
+                            "shoe": doc
+                        } 
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        })
+        .catch(err => {
+            console.log(err);
+            res.json({ 
+                "status": "error",
+                "message": "Could not update this shoe"
+            });
+        });
+}
+
 //functie om schoen op te slaan
 const create = (req, res, next) => {
     let shoe = new Shoes();
@@ -83,4 +117,5 @@ const create = (req, res, next) => {
 module.exports.getAll = getAll;
 module.exports.getById = getById;
 module.exports.deleteById = deleteById;
+module.exports.updateById = updateById;
 module.exports.create = create;
