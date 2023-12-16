@@ -13,7 +13,6 @@ const go = (server) => {
     spark.on("data", (data) => {
       try {
         let parsedData = JSON.parse(data);
-        console.log(`received data from client`, parsedData.data);
 
         if (parsedData.action === "update") {
           //update the orders list
@@ -21,26 +20,26 @@ const go = (server) => {
             action: "update",
             data: {
               count: parsedData.data.ordersCount,
-              shoes: parsedData.data.shoes
+              shoes: parsedData.data.shoes,
             },
           });
         }
-        if(parsedData.action === "post"){
+        if (parsedData.action === "post") {
           //update the orders list with the new order
           primus.write({
             action: "post",
             data: {
-              shoe: parsedData.data.shoe
-            }
+              shoe: parsedData.data.shoe,
+            },
           });
         }
-        if(parsedData.action === "delete"){
+        if (parsedData.action === "delete") {
           //update the orders list with the new order
           primus.write({
             action: "delete",
             data: {
-              count: parsedData.data.ordersCount -1,
-            }
+              count: parsedData.data.ordersCount - 1,
+            },
           });
         }
       } catch (err) {
